@@ -82,7 +82,7 @@ namespace CloudLAPSPortal.Models
 
             try
             {
-                secretSerialNumber = secret.Properties.Tags["SerialNumber"].ToString();
+                secretSerialNumber = secret.Name;
             }
             catch
             {
