@@ -50,7 +50,8 @@ namespace CloudLAPSPortal.Controllers
                         AuditEvent auditEvent = new AuditEvent()
                         {
                             UserPrincipalName = User.Identity.Name,
-                            ComputerName = searchValue,
+                            ComputerName = secret.SecretDeviceName,
+                            SerialNumber = secret.SecretSerialNumber,
                             Action = "SecretGet",
                             CreatedOn = DateTime.UtcNow,
                             Result = "Success",

@@ -10,6 +10,7 @@ namespace CloudLAPSPortal.Models
         public string UserPrincipalName { get; set; }
         public string Action { get; set; }
         public string ComputerName { get; set; }
+        public string SerialNumber { get; set; }
         public DateTime CreatedOn { get; set; }
         public string Result { get; set; }
         public string Id { get; set; }
