@@ -7,6 +7,7 @@ namespace CloudLAPSPortal.Models
 {
     public class AuditEvent
     {
+        public string AzureADDeviceId { get; set; }
         public string UserPrincipalName { get; set; }
         public string Action { get; set; }
         public string ComputerName { get; set; }

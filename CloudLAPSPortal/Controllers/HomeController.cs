@@ -49,6 +49,7 @@ namespace CloudLAPSPortal.Controllers
                         // Construct new audit event
                         AuditEvent auditEvent = new AuditEvent()
                         {
+                            AzureADDeviceId = secret.SecretAzureADDeviceId,
                             UserPrincipalName = User.Identity.Name,
                             ComputerName = secret.SecretDeviceName,
                             SerialNumber = secret.SecretSerialNumber,

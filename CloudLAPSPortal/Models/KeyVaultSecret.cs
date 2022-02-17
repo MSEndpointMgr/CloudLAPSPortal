@@ -17,6 +17,7 @@ namespace CloudLAPSPortal.Models
         public string SecretId { get; set; }
         public string SecretUserName { get; set; }
         public string SecretSerialNumber { get; set; }
+        public string SecretAzureADDeviceId { get; set; }
 
         public static async Task<KeyVaultSecret> GetComputerAsync(string keyVaultUri, string searchValue)
         {
@@ -27,6 +28,7 @@ namespace CloudLAPSPortal.Models
             string secretId = string.Empty;
             string secretUserName = string.Empty;
             string secretSerialNumber = string.Empty;
+            string secretAzureADDeviceId = string.Empty;
 
             // Construct secret client for provided key vault using managed system identity for authentication
             var keyVaultClient = new SecretClient(vaultUri: new Uri(keyVaultUri), credential: new DefaultAzureCredential());
@@ -89,6 +91,15 @@ namespace CloudLAPSPortal.Models
                 // Exception unhandled
             }
 
+            try
+            {
+                secretAzureADDeviceId = secret.Properties.Tags["AzureADDeviceID"]?.ToString();
+            }
+            catch
+            {
+                // Exception unhandled
+            }
+
             KeyVaultSecret keyVaultItem = new KeyVaultSecret()
             {
                 SecretDeviceName = SecretDeviceName,
@@ -96,15 +107,11 @@ namespace CloudLAPSPortal.Models
                 SecretDate = secretDate,
                 SecretId = secretId,
                 SecretUserName = secretUserName,
-                SecretSerialNumber = secretSerialNumber
+                SecretSerialNumber = secretSerialNumber,
+                SecretAzureADDeviceId = secretAzureADDeviceId
             };
 
             return keyVaultItem;
-        }
-
-        public static string TestNotNull(string value)
-        {
-            return value ?? "";
         }
     }
 }
